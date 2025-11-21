@@ -191,6 +191,21 @@ void Make_Equal(int& A, int& B, int& C)
 //   - counts space-separated tokens using stringstream
 // - Test with various strings and print results
 
+std::vector<int> Parse_Integers(const std::string& Text)
+{
+
+}
+
+std::string Join_Strings(const std::vector<std::string>& Words, const std::string& Delimiter)
+{
+
+}
+
+int Count_Tokens(const std::string& Text)
+{
+
+}
+
 // TASK 6: Recursive Array Operations
 // Write recursive functions to work with arrays.
 // Requirements:
@@ -203,6 +218,16 @@ void Make_Equal(int& A, int& B, int& C)
 //   - hint: return max of current element and max of rest
 // - Test with array: {34, 67, 12, 89, 45, 23, 78}
 // - Compare with iterative results to verify correctness
+
+int Array_Sum_Recursive(const int Array[], const int Length, const int Index = 0)
+{
+
+}
+
+int Find_Max_Recursive(const int Array[], const int Length, const int Index = 0)
+{
+
+}
 
 // TASK 7: Multi-File Data Processing
 // Create a program that processes multiple data files.
@@ -221,3 +246,27 @@ void Make_Equal(int& A, int& B, int& C)
 // - Write function: void compare_files(const std::string & file1, const std::string & file2)
 //   - analyzes both files and prints which has more lines/words/chars
 // - Create 2-3 test files with different content and analyze them
+
+struct DataSummary
+{
+	std::string FileName;
+	int Line_Count;
+	int Word_Count;
+	int Char_Count;
+};
+
+DataSummary Analyze_File(const std::string& FileName)
+{
+	// counts lines, words(space - separated), and characters in file
+	// returns DataSummary with all statistics
+}
+
+void Print_Summary(const DataSummary& Summary)
+{
+	// prints all statistics in readable format
+}
+
+void Compare_Files(const std::string& File1, const std::string& File2)
+{
+	// analyzes both files and prints which has more lines/words/chars
+}
