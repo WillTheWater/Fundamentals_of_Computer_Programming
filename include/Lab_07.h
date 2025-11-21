@@ -125,6 +125,16 @@ int Count_Negative(const std::vector<double>& Numbers)
 	return Count;
 }
 
+int Count_Zero(const std::vector<double>& Numbers)
+{
+	int Count = 0;
+	for (double Number : Numbers)
+	{
+		if (Number == 0) { Count++; }
+	}
+	return Count;
+}
+
 // TASK 4: Reference Parameters - Sort Three Values
 // Write functions that work with references to sort and manipulate values.
 // Requirements:
@@ -134,6 +144,39 @@ int Count_Negative(const std::vector<double>& Numbers)
 // - void make_equal(int & a, int & b, int & c) - sets all three to their average
 // - Test with three variables initialized to: 45, 12, 33
 // - Show values after each function call
+
+void Sort_Three(int& A, int& B, int& C)
+{
+	if (A > B) {
+		std::swap(A, B);
+	}
+
+	if (A > C)
+	{
+		std::swap(A, C);
+	}
+
+	if (B > C)
+	{
+		std::swap(B, C);
+	}
+}
+
+void Increment_All(int& A, int& B, int& C, const int Value)
+{
+	A += Value;
+	B += Value;
+	C += Value;
+}
+
+void Make_Equal(int& A, int& B, int& C)
+{
+	int Sum = A + B + C;
+	int Average = Sum / 3;
+	A = Average;
+	B = Average;
+	C = Average;
+}
 
 // TASK 5: String Stream Processing
 // Write functions that use std::stringstream for string manipulation.
