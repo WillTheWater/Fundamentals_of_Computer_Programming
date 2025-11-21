@@ -48,6 +48,29 @@ void Absolute(std::vector<int>& Vector)
 // - Test with at least 5 students
 // - Print success/failure message and verify file contents
 
+bool Write_Students(const std::string& FileName, const std::vector<std::string>& Names, const std::vector<int>& Scores)
+{
+	if (Names.size() != Scores.size())
+	{
+		std::cerr << "Error: Name count does not match score count." << std::endl;
+		return false;
+	}
+
+	std::ofstream OutFile{ FileName };
+	if (!OutFile)
+	{
+		std::cerr << "Failed to load: " << FileName << std::endl;
+		return false;
+	}
+
+	for (auto i = 0; i < Names.size(); i++)
+	{
+		OutFile << "Name: " << Names[i] << ", Score: " << Scores[i] << std::endl;
+	}
+	std::cout << "Successfully created " << FileName << std::endl;
+	return true;
+}
+
 // TASK 3: File Reading - Number Statistics
 // Write functions to read numbers from a file and analyze them.
 // Requirements:
@@ -60,6 +83,47 @@ void Absolute(std::vector<int>& Vector)
 //   - counts how many numbers are negative
 // - First create a file with numbers, then read and analyze it
 // - Print: total count, positive count, negative count, zero count
+
+std::vector<double> Read_Numbers(const std::string& Filename) 
+{
+	std::vector<double> Numbers;
+	std::ifstream InFile(Filename);
+
+	if (!InFile) 
+	{
+		std::cerr << "Error: Could not open file " << Filename << std::endl;
+		return Numbers;
+	}
+
+	double Number;
+	
+	while (InFile >> Number) 
+	{
+		Numbers.push_back(Number);
+	}
+
+	return Numbers;
+}
+
+int Count_Positive(const std::vector<double>& Numbers)
+{
+	int Count = 0;
+	for (double Number : Numbers)
+	{
+		if (Number > 0) { Count++; }
+	}
+	return Count;
+}
+
+int Count_Negative(const std::vector<double>& Numbers)
+{
+	int Count = 0;
+	for (double Number : Numbers)
+	{
+		if (Number < 0) { Count++; }
+	}
+	return Count;
+}
 
 // TASK 4: Reference Parameters - Sort Three Values
 // Write functions that work with references to sort and manipulate values.

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Functions.h"
+#include "Lab_07.h"
 
 int main()
 {
