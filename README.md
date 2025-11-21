@@ -1,3 +1,4 @@
-Fundamentals of Computer Programming
+# Fundamentals of Computer Programming
+---
 
-This repository contains my lab assignments and coursework for Fundamentals of Computer Programming.
+This repository contains lab assignments for Fundamentals of Computer Programming.
