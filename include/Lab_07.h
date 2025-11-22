@@ -217,8 +217,6 @@ std::string Join_Strings(const std::vector<std::string>& Words, const std::strin
 
 	std::stringstream Stream;
 
-	//Stream << Words[0];
-
 	for (std::string Word : Words) 
 	{
 		Stream << Word << Delimiter;
@@ -272,9 +270,9 @@ int Find_Max_Recursive(const int Array[], const int Length, const int Index = 0)
 // Requirements:
 // - Create struct: struct DataSummary { 
 //     std::string filename; 
-//     int line_count;
-//     int word_count;
-//     int char_count;
+//     int LineCount;
+//     int WordCount;
+//     int CharCount;
 //   };
 // - Write function: DataSummary analyze_file(const std::string & filename)
 //   - counts lines, words (space-separated), and characters in file
@@ -288,25 +286,104 @@ int Find_Max_Recursive(const int Array[], const int Length, const int Index = 0)
 struct DataSummary
 {
 	std::string FileName;
-	int Line_Count;
-	int Word_Count;
-	int Char_Count;
+	int LineCount;
+	int WordCount;
+	int CharCount;
+
+	DataSummary(const std::string& filename = "", int lines = 0, int words = 0, int chars = 0)
+		: FileName(filename), 
+		LineCount(lines), 
+		WordCount(words), 
+		CharCount(chars) 
+	{
+	}
 };
+
+bool IsSameFile(DataSummary FileA, DataSummary FileB)
+{
+	if (FileA.FileName == FileB.FileName) { return true; }
+	return false;
+}
+
+bool HasEqualLines(DataSummary FileA, DataSummary FileB)
+{
+	if (FileA.LineCount == FileB.LineCount) { return true; }
+	return false;
+}
+
+bool HasEqualWords(DataSummary FileA, DataSummary FileB)
+{
+	if (FileA.WordCount == FileB.WordCount) { return true; }
+	return false;
+}
+
+bool HasEqualChars(DataSummary FileA, DataSummary FileB)
+{
+	if (FileA.CharCount == FileB.CharCount) { return true; }
+	return false;
+}
 
 DataSummary Analyze_File(const std::string& FileName)
 {
-	DataSummary Nothing;
-	// counts lines, words(space - separated), and characters in file
-	// returns DataSummary with all statistics
-	return Nothing;
+	DataSummary Summary(FileName);
+	std::ifstream File(FileName);
+	if (!File.is_open())
+	{
+		std::cerr << "Error: Could not open file " << FileName << "\n";
+		return Summary;
+	}
+
+	std::string Line;
+	while (std::getline(File, Line))
+	{
+		Summary.LineCount++;
+		Summary.CharCount += Line.size();
+
+		std::istringstream StringStream(Line);
+		std::string Word;
+		while (StringStream >> Word)
+		{
+			Summary.WordCount++;
+		}
+	}
+
+	File.close();
+	return Summary;
 }
 
 void Print_Summary(const DataSummary& Summary)
 {
-	// prints all statistics in readable format
+	std::cout << "File: " << "\"" << Summary.FileName << "\" contains\n";
+	std::cout << "\t* Lines: " << Summary.LineCount << "\n";
+	std::cout << "\t* Words: " << Summary.WordCount << "\n";
+	std::cout << "\t* Characters: " << Summary.CharCount << "\n";
 }
 
 void Compare_Files(const std::string& File1, const std::string& File2)
 {
-	// analyzes both files and prints which has more lines/words/chars
+	DataSummary FileData1 = Analyze_File(File1);
+	DataSummary FileData2 = Analyze_File(File2);
+	if (IsSameFile(FileData1, FileData2)) 
+	{ 
+		std::cerr << "The files are the same;\n\n";
+		return;
+	}
+
+	if (HasEqualLines(FileData1, FileData2))
+	{
+		std::cout << FileData1.FileName << " and " << FileData2.FileName << ": Have equal amount of lines.\n";
+	}
+	else std::cout << ((FileData1.LineCount > FileData2.LineCount) ? FileData1.FileName : FileData2.FileName) << ": Has more lines.\n";
+
+	if (HasEqualWords(FileData1, FileData2))
+	{
+		std::cout << FileData1.FileName << " and " << FileData2.FileName << ": Have equal amount of words.\n";
+	}
+	else std::cout << ((FileData1.WordCount > FileData2.WordCount) ? FileData1.FileName : FileData2.FileName) << ": Has more words.\n";
+
+	if (HasEqualChars(FileData1, FileData2))
+	{
+		std::cout << FileData1.FileName << " and " << FileData2.FileName << ": Have equal amount of characters.\n";
+	}
+	else std::cout << ((FileData1.CharCount > FileData2.CharCount) ? FileData1.FileName : FileData2.FileName) << ": Has more characters.\n";
 }

@@ -65,5 +65,12 @@ int main()
     std::cout << Find_Max_Recursive(TestArray, std::size(TestArray)) << "\n";
     std::cout << "Max: 89\n\n";
 
+    std::cout << "--- Multi-File Data Processing ---\n";
+    DataSummary TestData = Analyze_File("../src/Test1.txt");
+    Print_Summary(TestData);
+    std::cout << "\n\n";
+
+    Compare_Files("../src/Test2.txt", "../src/Test1.txt");
+
 	return 0;
 }
