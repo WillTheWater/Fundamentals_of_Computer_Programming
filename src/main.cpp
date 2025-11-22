@@ -47,14 +47,23 @@ int main()
     std::cout << "Empty Result: \"" << Join_Strings(EmptyVector, ", ") << "\"\n\n";
 
     std::cout << "--- 3. Count Tokens ---\n";
-    const std::string token_text_1 = "This is a sentence with seven tokens.";
-    int token_count_1 = Count_Tokens(token_text_1);
-    std::cout << "Input 1: \"" << token_text_1 << "\"\n";
-    std::cout << "Token Count 1: " << token_count_1 << "\n";
+    const std::string TokenText1 = "This is a sentence with seven tokens.";
+    int TokenCount1 = Count_Tokens(TokenText1);
+    std::cout << "Input 1: \"" << TokenText1 << "\"\n";
+    std::cout << "Token Count 1: " << TokenCount1 << "\n";
 
-    const std::string token_text_2 = "  Extra   spaces  between  words. ";
-    int token_count_2 = Count_Tokens(token_text_2);
-    std::cout << "Input 2: \"" << token_text_2 << "\"\n";
-    std::cout << "Token Count 2: " << token_count_2 << "\n";
+    const std::string TokenText2 = "  Extra   spaces  between  words. ";
+    int TokenCount2 = Count_Tokens(TokenText2);
+    std::cout << "Input 2: \"" << TokenText2 << "\"\n";
+    std::cout << "Token Count 2: " << TokenCount2 << "\n\n";
+
+    std::cout << "--- Array Recursion ---\n";
+    const int TestArray[] = { 34, 67, 12, 89, 45, 23, 78 };
+    std::cout << Array_Sum_Recursive(TestArray, std::size(TestArray)) << "\n";
+    std::cout << "Sum: " << 34 + 67 + 12 + 89 + 45 + 23 + 78 << "\n";
+
+    std::cout << Find_Max_Recursive(TestArray, std::size(TestArray)) << "\n";
+    std::cout << "Max: 89\n\n";
+
 	return 0;
 }

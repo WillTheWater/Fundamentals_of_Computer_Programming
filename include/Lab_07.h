@@ -256,12 +256,15 @@ int Count_Tokens(const std::string& Text)
 
 int Array_Sum_Recursive(const int Array[], const int Length, const int Index = 0)
 {
-	return 0;
+	if (Index >= Length) { return 0; }
+	return Array[Index] + Array_Sum_Recursive(Array, Length, Index + 1);
 }
 
 int Find_Max_Recursive(const int Array[], const int Length, const int Index = 0)
 {
-	return 0;
+	if (Index == Length - 1) { return Array[Index]; }
+	int Max = Find_Max_Recursive(Array, Length, Index + 1);
+	return (Array[Index] > Max) ? Array[Index] : Max;
 }
 
 // TASK 7: Multi-File Data Processing
