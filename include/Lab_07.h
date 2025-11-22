@@ -193,17 +193,52 @@ void Make_Equal(int& A, int& B, int& C)
 
 std::vector<int> Parse_Integers(const std::string& Text)
 {
+	std::vector<int> Numbers;
+	std::stringstream Stream(Text);
+	int Number;
+	std::string Token;
+	Numbers.clear();
 
+	while (Stream >> Token)
+	{
+		std::stringstream TokenStream(Token);
+
+		if (TokenStream >> Number && TokenStream.eof()) 
+		{
+			Numbers.push_back(Number);
+		}
+	}
+	return Numbers;
 }
 
 std::string Join_Strings(const std::vector<std::string>& Words, const std::string& Delimiter)
 {
+	if (Words.empty()) { return ""; }
 
+	std::stringstream Stream;
+
+	//Stream << Words[0];
+
+	for (std::string Word : Words) 
+	{
+		Stream << Word << Delimiter;
+	}
+
+	return Stream.str();
 }
 
 int Count_Tokens(const std::string& Text)
 {
+	std::stringstream Stream(Text);
+	std::string Token;
+	int Count = 0;
 
+	while (Stream >> Token) 
+	{
+		Count++;
+	}
+
+	return Count;
 }
 
 // TASK 6: Recursive Array Operations
@@ -221,12 +256,12 @@ int Count_Tokens(const std::string& Text)
 
 int Array_Sum_Recursive(const int Array[], const int Length, const int Index = 0)
 {
-
+	return 0;
 }
 
 int Find_Max_Recursive(const int Array[], const int Length, const int Index = 0)
 {
-
+	return 0;
 }
 
 // TASK 7: Multi-File Data Processing
@@ -257,8 +292,10 @@ struct DataSummary
 
 DataSummary Analyze_File(const std::string& FileName)
 {
+	DataSummary Nothing;
 	// counts lines, words(space - separated), and characters in file
 	// returns DataSummary with all statistics
+	return Nothing;
 }
 
 void Print_Summary(const DataSummary& Summary)
